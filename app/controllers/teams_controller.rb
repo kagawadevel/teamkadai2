@@ -53,6 +53,7 @@ class TeamsController < ApplicationController
     @user = User.find_by(id: params[:assign_id])
     if @team.update(owner_id: @user.id)
       redirect_to team_url(@team), notice: 'チームのオーナーを変更しました'
+      ChangeOwnerMailer.change_owner(@team).deliver
     else
       render :show, notice: 'オーナー変更に失敗しました'
     end
