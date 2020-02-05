@@ -37,6 +37,7 @@
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
+          <li><%= button_to '削除', agenda, method: :delete, class: 'btn btn-danger' %></li>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">
