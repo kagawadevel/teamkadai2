@@ -22,7 +22,7 @@ class AgendasController < ApplicationController
   end
 
   def destroy
-    if @agenda.user_id == current_user.id || @agenda.user_id == owner_id
+    if @agenda.user_id == current_user.id || @agenda.user_id == @agenda.team.owner_id
       @agenda.destroy
       Team.find(@agenda.team_id).users.each do |user|
         AssignMailer.delete_agenda(user.id, @agenda).deliver
